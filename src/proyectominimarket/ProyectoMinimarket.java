@@ -1,11 +1,12 @@
 package proyectominimarket;
 
-import jFrame.Principal;
+import jFrame.InicioSesion;
+import jFrame.RegistroUsuario;
 
 public class ProyectoMinimarket {
 
     public static void main(String[] args) {
-        Principal.main(args);
+        InicioSesion.main(args);
     }
     
 }
