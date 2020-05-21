@@ -1,22 +1,10 @@
-package jFrame;
+package vista;
 
-import conexionSql.Metodos;
 
-public class RegistroUsuario extends javax.swing.JFrame {
 
-    Metodos metodos = new Metodos();
+public class Vendedor extends javax.swing.JFrame {
 
-    String Rut;
-    String Nombre;
-    String ApellidoPaterno;
-    String ApellidoMaterno;
-    String Direccion;
-    String Telefono;
-    String Contrasena;
-    String Correo;
-    String TipoUsuario;
-
-    public RegistroUsuario() {
+    public Vendedor() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -139,8 +127,9 @@ public class RegistroUsuario extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(btn_crear_usuario)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btn_salir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(112, 112, 112)
+                        .addComponent(btn_salir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(16, 16, 16)
                         .addComponent(jSeparator1))
@@ -265,21 +254,11 @@ public class RegistroUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_direccionActionPerformed
 
     private void txt_telefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_telefonoActionPerformed
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_txt_telefonoActionPerformed
 
     private void btn_crear_usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_crear_usuarioActionPerformed
-        Rut = txt_rut.getText();
-        Nombre = txt_nombre.getText();
-        ApellidoPaterno = txt_apellidoP.getText();
-        ApellidoMaterno = txt_apellidoM.getText();
-        Direccion = txt_direccion.getText();
-        Telefono = txt_telefono.getText();
-        Contrasena = jPasswordField1.getText();
-        Correo = txt_correo.getText();
-        TipoUsuario = cbx_tipo_usuario.getSelectedItem().toString();
-
-        metodos.guardar_registro_usuario(Rut, Nombre, ApellidoPaterno, ApellidoMaterno, Direccion, Telefono, Contrasena, Correo, TipoUsuario);
+   
     }//GEN-LAST:event_btn_crear_usuarioActionPerformed
 
     private void btn_salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salirActionPerformed
@@ -294,41 +273,8 @@ public class RegistroUsuario extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_apellidoPActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RegistroUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RegistroUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RegistroUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RegistroUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new RegistroUsuario().setVisible(true);
-            }
-        });
-    }
+   
+ 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_crear_usuario;

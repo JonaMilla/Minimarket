@@ -1,19 +1,24 @@
-
-package jFrame;
+package vista;
 
 import java.awt.Image;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import sun.security.util.Password;
+import modelo.Vendedor;
+import modelo.VendedorDAO;
+
 
 public class InicioSesion extends javax.swing.JFrame {
-
+    VendedorDAO vdao =  new VendedorDAO();
+    Vendedor ven = new Vendedor();
     public InicioSesion() {
         initComponents();
         setLocationRelativeTo(null);
         lblFondo();
         setTitle("Acceso al Sistema");
+        txtNombreUsuario.setText("emp1");
+        passContraseña.setText("17592709-5");
+        
     }
     
     public void lblFondo() {
@@ -25,7 +30,24 @@ public class InicioSesion extends javax.swing.JFrame {
                   lblFondo.setIcon(lblIconoFondo);
     }
     
-  
+    public void validarInicioSesion(){
+        String rut = passContraseña.getText();
+        String user = txtNombreUsuario.getText();
+        if (txtNombreUsuario.getText().equals("") || passContraseña.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Los datos no pueden estar vacios");
+            txtNombreUsuario.requestFocus();
+        }else{
+            ven = vdao.ValidarInicioSesion(rut, user);
+                if (ven.getUser() != null  && ven.getRut() != null) {
+                    MenuPrincipal mp = new MenuPrincipal();
+                    mp.setVisible(true);
+                    dispose();      
+            }else{
+                    JOptionPane.showMessageDialog(this, "Debe ingresar datos válidos");
+                    txtNombreUsuario.requestFocus();
+                }
+        }
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -41,14 +63,12 @@ public class InicioSesion extends javax.swing.JFrame {
         lblFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(472, 597));
         setMinimumSize(new java.awt.Dimension(472, 597));
-        setPreferredSize(new java.awt.Dimension(472, 597));
         getContentPane().setLayout(null);
 
         btnAceptar.setBackground(new java.awt.Color(153, 255, 153));
         btnAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/accept.png"))); // NOI18N
-        btnAceptar.setText("Aceptar");
+        btnAceptar.setText("Ingresar");
         btnAceptar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnAceptar.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         btnAceptar.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
@@ -71,6 +91,11 @@ public class InicioSesion extends javax.swing.JFrame {
         btnSalir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnSalir.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         btnSalir.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnSalir);
         btnSalir.setBounds(260, 430, 120, 60);
 
@@ -115,18 +140,13 @@ public class InicioSesion extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAceptarMouseClicked
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        String user,pass;
-        user = txtNombreUsuario.getText();
-        pass = passContraseña.getText();
-        if (user.equals("ADMIN") && pass.equals("MAYO_2020")) {
-           MenuPrincipal mp = new MenuPrincipal();
-            mp.setVisible(true);
-            dispose();
-        }else{
-            JOptionPane.showMessageDialog(this, "Usuario / Contraseña incorrectos"); 
-        }
+        validarInicioSesion();
     }//GEN-LAST:event_btnAceptarActionPerformed
 
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+       System.exit(0);
+    }//GEN-LAST:event_btnSalirActionPerformed
+        
     /**
      * @param args the command line arguments
      */

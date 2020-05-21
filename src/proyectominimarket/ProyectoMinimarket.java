@@ -1,7 +1,7 @@
 package proyectominimarket;
 
-import jFrame.InicioSesion;
-import jFrame.RegistroUsuario;
+import vista.InicioSesion;
+import vista.Vendedor;
 
 public class ProyectoMinimarket {
 

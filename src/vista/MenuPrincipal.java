@@ -1,4 +1,4 @@
-package jFrame;
+ package vista;
 
 import java.awt.Image;
 import javax.swing.Icon;
@@ -34,12 +34,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
         lblFondo = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
+        jMenu4 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(685, 565));
         setMinimumSize(new java.awt.Dimension(685, 565));
-        setPreferredSize(new java.awt.Dimension(685, 565));
         getContentPane().setLayout(null);
 
         jButton1.setBackground(new java.awt.Color(102, 51, 255));
@@ -57,7 +59,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jButton2.setFont(new java.awt.Font("Microsoft YaHei UI Light", 1, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/menu_stock.png"))); // NOI18N
-        jButton2.setText("Menú compra en stock");
+        jButton2.setText("Historial de compras");
         jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jButton2.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
@@ -67,19 +69,19 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jButton3.setBackground(new java.awt.Color(102, 51, 255));
         jButton3.setFont(new java.awt.Font("Microsoft YaHei UI Light", 1, 14)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/menu_caja.png"))); // NOI18N
-        jButton3.setText("Menú Encargado de Caja");
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/menu_admin.png"))); // NOI18N
+        jButton3.setText("?");
         jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton3.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jButton3.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         getContentPane().add(jButton3);
-        jButton3.setBounds(410, 340, 210, 113);
+        jButton3.setBounds(410, 340, 190, 130);
 
         jButton4.setBackground(new java.awt.Color(102, 51, 255));
         jButton4.setFont(new java.awt.Font("Microsoft YaHei UI Light", 1, 14)); // NOI18N
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/menu_caja.png"))); // NOI18N
-        jButton4.setText("Menú Encargado de Caja");
+        jButton4.setText("Caja");
         jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton4.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jButton4.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
@@ -98,9 +100,38 @@ public class MenuPrincipal extends javax.swing.JFrame {
         lblFondo.setBounds(0, 0, 690, 540);
 
         jMenu1.setText("Opciones");
+
+        jMenu3.setText("Ayuda");
+        jMenu1.add(jMenu3);
+
+        jMenu4.setText("Salir");
+        jMenu4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu4ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenu4);
+
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Salir");
+        jMenu2.setText("Mantenimiento");
+
+        jMenuItem1.setText("Cliente");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem1);
+
+        jMenuItem2.setText("Vendedor");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem2);
+
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -108,40 +139,20 @@ public class MenuPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        Cliente cli = new Cliente();
+        cli.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MenuPrincipal().setVisible(true);
-            }
-        });
-    }
+    private void jMenu4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu4ActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jMenu4ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        Vendedor ven = new Vendedor();
+        ven.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -151,7 +162,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JLabel lblFondo;
     // End of variables declaration//GEN-END:variables
 }

@@ -8,13 +8,13 @@ public class ConexionSql {
     
     private static String URL = "jdbc:mysql://localhost:3307/minimarket?useTimeZone=true&serverTimezone=UTC";
     private static String Usuario = "root";
-    private static String Contraseña = "";
+    private static String Contrasenia = "";
 
     public static Connection conectar() {
         Connection conexion = null;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conexion = DriverManager.getConnection(URL, Usuario, Contraseña);
+            conexion = DriverManager.getConnection(URL, Usuario, Contrasenia);
             System.out.println("Conexión existosa");
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println("Error: " + e);
