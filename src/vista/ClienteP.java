@@ -1,12 +1,106 @@
 package vista;
 
-public class Cliente extends javax.swing.JFrame {
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import modelo.Cliente;
+import modelo.ClienteDAO;
 
-    public Cliente() {
+public class ClienteP extends javax.swing.JFrame {
+
+    ClienteDAO dao = new ClienteDAO();
+    Cliente cl = new Cliente();
+    
+    DefaultTableModel modelo = new DefaultTableModel();
+    int id;
+
+    public ClienteP() {
         initComponents();
         this.setLocationRelativeTo(null);
+        listar();
     }
-
+    
+    void listar() {
+        List<Cliente> lista = dao.listar();
+        modelo = (DefaultTableModel) jtablaCliente.getModel();        
+        Object[] ob = new Object[7];
+        for (int i = 0; i < lista.size(); i++) {
+            ob[0] = lista.get(i).getId();
+            ob[1] = lista.get(i).getNombre();
+            ob[2] = lista.get(i).getRut();
+            ob[3] = lista.get(i).getApellidoP();
+            ob[4] = lista.get(i).getApellidoM();
+            ob[5] = lista.get(i).getDireccion();
+            ob[6] = lista.get(i).getEstado();
+            modelo.addRow(ob);
+        }
+        jtablaCliente.setModel(modelo);
+    }
+    
+    void agregar() {
+        String nom = txtNombre.getText();
+        String rut = txtRut.getText();
+        String apeP = txtApellidoP.getText();
+        String apeM = txtApellidoM.getText();
+        String dir = txtDireccion.getText();
+        String est = cbxEstado.getSelectedItem().toString();
+        Object[] ob = new Object[6];
+        ob[0] = nom;
+        ob[1] = rut;
+        ob[2] = apeP;
+        ob[3] = apeM;
+        ob[4] = dir;
+        ob[5] = est;
+        dao.add(ob);
+    }
+    
+    void actualizar() {
+        int fila = jtablaCliente.getSelectedRow();
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar una fila");
+        }else{
+            String nom = txtNombre.getText();
+            String rut = txtRut.getText();
+            String apeP = txtApellidoP.getText();
+            String apeM = txtApellidoM.getText();
+            String dir = txtDireccion.getText();
+            String est = cbxEstado.getSelectedItem().toString();      
+            Object[] obj = new Object[7];
+            obj[0] = nom;
+            obj[1] = rut;
+            obj[2] = apeP;
+            obj[3] = apeM;
+            obj[4] = dir;
+            obj[5] = est;
+            dao.actualizar(obj);
+        }       
+    }
+    
+    void eliminar() {
+        int fila = jtablaCliente.getSelectedRow();
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar una fila");
+        }else{
+            dao.eliminar(id);
+        }
+    }
+    
+    void nuevo() {
+        txtNombre.setText("");
+        txtApellidoP.setText("");
+        txtApellidoM.setText("");
+        txtDireccion.setText("");
+        cbxEstado.setSelectedItem("");
+        txtRut.requestFocus();
+    }
+    
+    void limpiarTabla() {
+        for (int i = 0; i < modelo.getRowCount(); i++) {
+            modelo.removeRow(i);
+            i = i - 1;
+        }
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -52,64 +146,54 @@ public class Cliente extends javax.swing.JFrame {
         jLabel9.setText("ESTADO                         :");
 
         txtRut.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        txtRut.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtRutActionPerformed(evt);
-            }
-        });
 
         txtNombre.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        txtNombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNombreActionPerformed(evt);
-            }
-        });
 
         txtApellidoM.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        txtApellidoM.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtApellidoMActionPerformed(evt);
-            }
-        });
 
         txtTelefono.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        txtTelefono.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTelefonoActionPerformed(evt);
-            }
-        });
 
         txtApellidoP.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        txtApellidoP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtApellidoPActionPerformed(evt);
-            }
-        });
 
         txtDireccion.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        txtDireccion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDireccionActionPerformed(evt);
-            }
-        });
 
         cbxEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONAR", "ACTIVO", "INACTIVO" }));
 
         btnNuevo.setFont(new java.awt.Font("Arial", 2, 14)); // NOI18N
         btnNuevo.setForeground(new java.awt.Color(153, 153, 255));
         btnNuevo.setText("NUEVO");
+        btnNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevoActionPerformed(evt);
+            }
+        });
 
         btnAgregar.setFont(new java.awt.Font("Arial", 2, 14)); // NOI18N
         btnAgregar.setForeground(new java.awt.Color(153, 153, 255));
         btnAgregar.setText("AGREGAR");
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarActionPerformed(evt);
+            }
+        });
 
         btnActualizar.setFont(new java.awt.Font("Arial", 2, 14)); // NOI18N
         btnActualizar.setForeground(new java.awt.Color(153, 153, 255));
         btnActualizar.setText("ACTUALIZAR");
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarActionPerformed(evt);
+            }
+        });
 
         btnEliminar.setFont(new java.awt.Font("Arial", 2, 14)); // NOI18N
         btnEliminar.setForeground(new java.awt.Color(153, 153, 255));
         btnEliminar.setText("ELIMINAR");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -208,9 +292,14 @@ public class Cliente extends javax.swing.JFrame {
 
             },
             new String [] {
-                "NOMBRE", "RUT", "APELLIDO P", "APELLIDO M", "DIRECCIÓN", "TELÉFONO"
+                "ID", "NOMBRE", "RUT", "APELLIDO P", "APELLIDO M", "DIRECCIÓN", "ESTADO"
             }
         ));
+        jtablaCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtablaClienteMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jtablaCliente);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -239,31 +328,52 @@ public class Cliente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtRutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRutActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtRutActionPerformed
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+        agregar();
+        limpiarTabla();
+        listar();
+        nuevo();
+    }//GEN-LAST:event_btnAgregarActionPerformed
 
-    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreActionPerformed
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+        actualizar();
+        limpiarTabla();
+        listar();
+        nuevo();
+    }//GEN-LAST:event_btnActualizarActionPerformed
 
-    private void txtApellidoMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidoMActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtApellidoMActionPerformed
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        eliminar();
+        limpiarTabla();
+        listar();
+        nuevo();
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
-    private void txtTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTelefonoActionPerformed
+    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
+        nuevo();
+    }//GEN-LAST:event_btnNuevoActionPerformed
 
-    private void txtApellidoPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidoPActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtApellidoPActionPerformed
+    private void jtablaClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtablaClienteMouseClicked
+        int fila = jtablaCliente.getSelectedRow();
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar una fila");
+        } else {
+            int id = Integer.parseInt(jtablaCliente.getValueAt(fila, 0).toString());
+            String nom = jtablaCliente.getValueAt(fila, 1).toString();
+            String rut = jtablaCliente.getValueAt(fila, 2).toString();
+            String apeP = jtablaCliente.getValueAt(fila, 3).toString();
+            String apeM = jtablaCliente.getValueAt(fila, 4).toString();
+            String dir = jtablaCliente.getValueAt(fila, 5).toString();
+            String est = jtablaCliente.getValueAt(fila, 6).toString();
+            txtNombre.setText(nom);
+            txtRut.setText(rut);
+            txtApellidoP.setText(apeP);
+            txtApellidoM.setText(apeM);
+            txtDireccion.setText(dir);
+            cbxEstado.setSelectedItem(est);
+        }
+    }//GEN-LAST:event_jtablaClienteMouseClicked
 
-    private void txtDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDireccionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDireccionActionPerformed
-
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;

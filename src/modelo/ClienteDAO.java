@@ -1,12 +1,11 @@
 package modelo;
 
 import conexionSql.ConexionSql;
-import java.awt.List;
+import java.util.List;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import vista.Crud;
 
 public class ClienteDAO implements Crud {
 
@@ -15,6 +14,7 @@ public class ClienteDAO implements Crud {
     PreparedStatement ps;
     ResultSet rs;
 
+    
     @Override
     public List listar() {
         List <Cliente> lista = new ArrayList<>();
@@ -33,8 +33,9 @@ public class ClienteDAO implements Crud {
                 c.setDireccion(rs.getString(6));
                 c.setEstado(rs.getString(7));
                 lista.add(c);
+                
             }
-        } catch (Exception e) {
+        } catch(Exception e) {           
         }
         return listar();
     }

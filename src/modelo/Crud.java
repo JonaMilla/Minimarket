@@ -1,8 +1,9 @@
-package vista;
+package modelo;
 
-import java.awt.List;
+import java.util.List;
 
 public interface Crud {
+    
     public List listar();
     public int  add (Object [] o);
     public int actualizar (Object [] o);
