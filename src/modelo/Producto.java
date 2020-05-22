@@ -11,11 +11,11 @@ public class Producto {
     }
 
     public Producto(int id, String nombre, int precio, int stock, String estado) {
-        this.id = id;
-        this.nombre = nombre;
-        this.precio = precio;
-        this.stock = stock;
-        this.estado = estado;
+        this.setId(id);
+        this.setNombre(nombre);
+        this.setPrecio(precio);
+        this.setStock(stock);
+        this.setEstado(estado);
     }
 
     public int getId() {

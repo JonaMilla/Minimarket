@@ -57,6 +57,8 @@ public class ClienteDAO implements Crud {
             ps.setObject(6, o[5]);
             r = ps.executeUpdate();
         } catch (Exception e) {
+        }finally{
+            con.cerrarConexion();
         }
         return r;
     }
@@ -77,6 +79,8 @@ public class ClienteDAO implements Crud {
             ps.setObject(6, o[5]);
             r = ps.executeUpdate();
         } catch (Exception e) {
+        }finally{
+            con.cerrarConexion();
         }
         return r;
                             
@@ -91,6 +95,8 @@ public class ClienteDAO implements Crud {
             ps.setInt(1, id);
             ps.executeUpdate();
         } catch (Exception e) {
+        }finally{
+            con.cerrarConexion();
         }
     }
 

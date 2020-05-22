@@ -62,7 +62,7 @@ public class Cliente {
 
     public void setApellidoP(String apellidoP) throws Exception {
         if (apellidoP.trim().length()>0) {
-            this.apellidoP = apellidoP;
+            this.apellidoP = apellidoP.trim();
         }else{
             throw new Exception("El apellido paterno debe ser obligatorio");
         }
@@ -75,7 +75,7 @@ public class Cliente {
 
     public void setApellidoM(String apellidoM) throws Exception {
         if (apellidoM.trim().length()>0) {
-            this.apellidoM = apellidoM;
+            this.apellidoM = apellidoM.trim();
         }else{
             throw new Exception("El apellido materno debe ser obligatorio");
         }
@@ -88,7 +88,7 @@ public class Cliente {
 
     public void setDireccion(String direccion) throws Exception {
        if(direccion.trim().length()>0){
-        this.direccion = direccion;
+        this.direccion = direccion.trim();
        }else{
            throw new Exception("La dirección debe ser obligatorio");
        }
