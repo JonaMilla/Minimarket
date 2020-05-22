@@ -142,7 +142,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/imagenes/menu_admin.png"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="?"/>
+        <Property name="text" type="java.lang.String" value="Ingresar Producto"/>
         <Property name="horizontalTextPosition" type="int" value="0"/>
         <Property name="verticalAlignment" type="int" value="1"/>
         <Property name="verticalTextPosition" type="int" value="1"/>

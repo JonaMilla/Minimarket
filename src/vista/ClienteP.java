@@ -13,7 +13,6 @@ public class ClienteP extends javax.swing.JFrame {
     
     DefaultTableModel modelo = new DefaultTableModel();
     int id;
-
     public ClienteP() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -51,6 +50,19 @@ public class ClienteP extends javax.swing.JFrame {
         ob[3] = apeM;
         ob[4] = dir;
         ob[5] = est;
+        Cliente cli = new Cliente();
+        try {
+            cli.setNombre(txtNombre.getText());
+            cli.setRut(txtRut.getText());
+            cli.setApellidoP(txtApellidoP.getText());
+            cli.setApellidoM(txtApellidoM.getText());
+            cli.setDireccion(txtDireccion.getText());
+            cli.setEstado(cbxEstado.getSelectedItem().toString());
+        } catch (Exception e) {
+            //System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+        
         dao.add(ob);
     }
     
@@ -126,6 +138,7 @@ public class ClienteP extends javax.swing.JFrame {
         btnEliminar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtablaCliente = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -302,18 +315,29 @@ public class ClienteP extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jtablaCliente);
 
+        jButton1.setBackground(new java.awt.Color(255, 0, 51));
+        jButton1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jButton1.setText("Salir");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(15, 15, 15)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 610, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(43, 43, 43)
+                                .addComponent(jButton1)))
+                        .addGap(0, 12, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 610, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -322,7 +346,9 @@ public class ClienteP extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1)
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         pack();
@@ -358,7 +384,7 @@ public class ClienteP extends javax.swing.JFrame {
         if (fila == -1) {
             JOptionPane.showMessageDialog(this, "Debe seleccionar una fila");
         } else {
-            int id = Integer.parseInt(jtablaCliente.getValueAt(fila, 0).toString());
+            id = Integer.parseInt(jtablaCliente.getValueAt(fila, 0).toString());
             String nom = jtablaCliente.getValueAt(fila, 1).toString();
             String rut = jtablaCliente.getValueAt(fila, 2).toString();
             String apeP = jtablaCliente.getValueAt(fila, 3).toString();
@@ -381,6 +407,7 @@ public class ClienteP extends javax.swing.JFrame {
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnNuevo;
     private javax.swing.JComboBox<String> cbxEstado;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

@@ -32,12 +32,13 @@ public class ClienteDAO implements Crud {
                 c.setApellidoM(rs.getString(5));
                 c.setDireccion(rs.getString(6));
                 c.setEstado(rs.getString(7));
-                lista.add(c);
-                
+                lista.add(c);              
             }
         } catch(Exception e) {           
+        }finally{
+            con.cerrarConexion();
         }
-        return listar();
+        return lista;
     }
 
     @Override
