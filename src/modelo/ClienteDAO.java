@@ -34,7 +34,8 @@ public class ClienteDAO implements Crud {
                 c.setEstado(rs.getString(7));
                 lista.add(c);              
             }
-        } catch(Exception e) {           
+        } catch(Exception e) { 
+            System.out.println(e.getMessage());
         }finally{
             con.cerrarConexion();
         }
@@ -44,7 +45,8 @@ public class ClienteDAO implements Crud {
     @Override
     public int add(Object [] o) {
         int r = 0;
-        String sql = "INSERT INTO Cliente (NombreCliente,Rut,ApellidoPaterno,ApellidoMaterno,Direccion,Estado)  "
+        String sql = "INSERT INTO Cliente (NombreCliente,Rut,ApellidoPaterno"
+                            + ",ApellidoMaterno,Direccion,Estado)  "
                             + "VALUES (?,?,?,?,?,?)";
         try {
             conn = con.conectar();
@@ -57,6 +59,7 @@ public class ClienteDAO implements Crud {
             ps.setObject(6, o[5]);
             r = ps.executeUpdate();
         } catch (Exception e) {
+            System.out.println(e.getMessage());
         }finally{
             con.cerrarConexion();
         }
@@ -66,7 +69,8 @@ public class ClienteDAO implements Crud {
     @Override
     public int actualizar(Object [] o) {
         int r = 0;
-        String sql = "UPDATE Cliente SET NombreCliente=?, Rut=?, ApellidoPaterno=?, ApellidoMaterno=?, Direccion=?, Estado=? "
+        String sql = "UPDATE Cliente SET NombreCliente=?, Rut=?, "
+                  + "ApellidoPaterno=?, ApellidoMaterno=?, Direccion=?, Estado=? "
                   + "WHERE IdCliente =?";
         try {
             conn = con.conectar();

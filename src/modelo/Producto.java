@@ -10,7 +10,7 @@ public class Producto {
     public Producto() {
     }
 
-    public Producto(int id, String nombre, int precio, int stock, String estado) {
+    public Producto(int id, String nombre, int precio, int stock, String estado) throws Exception {
         this.setId(id);
         this.setNombre(nombre);
         this.setPrecio(precio);
@@ -30,8 +30,13 @@ public class Producto {
         return nombre;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombre(String nombre) throws Exception {
+        if (nombre.trim().length() >0) {
+            this.nombre = nombre.trim();
+        }else{
+            throw new Exception("El nombre es obligatorio");
+        }
+        
     }
 
     public int getPrecio() {

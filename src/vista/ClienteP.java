@@ -60,7 +60,7 @@ public class ClienteP extends javax.swing.JFrame {
             cli.setEstado(cbxEstado.getSelectedItem().toString());
         } catch (Exception e) {
             //System.out.println(e.getMessage());
-            JOptionPane.showMessageDialog(this, e.getMessage());
+            JOptionPane.showMessageDialog(this, "Error al agregar Cliente" +e.getMessage());
         }
         
         dao.add(ob);

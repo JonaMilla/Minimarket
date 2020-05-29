@@ -36,11 +36,13 @@ public class Cliente {
     }
 
     public void setNombre(String nombre) throws Exception {
-        if (nombre.trim().length() > 0) {
-           this.nombre = nombre.trim(); 
-        }else{
-            throw new Exception("El nomnbre es obligatorio");            
-        }      
+        if (nombre.trim().length() == 0) {
+            throw new Exception("El nombre es obligatorio");           
+        }
+        if(nombre.trim().length() >10){
+            throw new Exception("El nombre debe ser menor a 10 caracteres");  
+        }  
+        this.nombre = nombre;
     }
 
     public String getRut() {
