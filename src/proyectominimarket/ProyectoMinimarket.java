@@ -1,7 +1,8 @@
 package proyectominimarket;
 
+import controlador.Controlador;
+import vista.ClienteP;
 import vista.InicioSesion;
-import vista.ProductoP;
 
 public class ProyectoMinimarket {
 

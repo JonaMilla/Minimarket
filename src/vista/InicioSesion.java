@@ -31,9 +31,9 @@ public class InicioSesion extends javax.swing.JFrame {
     }
     
     public void validarInicioSesion(){
-        String rut = passContraseña.getText();
+        String rut = new String (passContraseña.getPassword());
         String user = txtNombreUsuario.getText();
-        if (txtNombreUsuario.getText().equals("") || passContraseña.getText().equals("")) {
+        if (rut.trim().length()==0 || user.trim().length() ==0 ) {
             JOptionPane.showMessageDialog(this, "Los datos no pueden estar vacios");
             txtNombreUsuario.requestFocus();
         }else{
@@ -179,6 +179,7 @@ public class InicioSesion extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new InicioSesion().setVisible(true);
+             
             }
         });
     }

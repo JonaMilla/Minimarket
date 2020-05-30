@@ -1,12 +1,53 @@
 package vista;
-
-
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import modelo.Producto;
+import modelo.ProductoDAO;
 
 public class ProductoP extends javax.swing.JFrame {
-
+    ProductoDAO proDao = new ProductoDAO();
+    Producto pro = new Producto();
+    DefaultTableModel modelo = new DefaultTableModel();
+    int id;
     public ProductoP() {
         initComponents();
         this.setLocationRelativeTo(null);
+        //listar();
+    }
+    
+    void listar(){
+        List<Producto> lista = proDao.listar();
+        modelo = (DefaultTableModel) jtablaPro.getModel(); 
+        Object[] ob = new Object[7];
+        for(int i = 0; i < lista.size(); i++){
+            ob[0] = lista.get(i).getId();
+            ob[1] = lista.get(i).getNombre();
+            ob[2] = lista.get(i).getPrecio();
+            ob[3] = lista.get(i).getStock();
+            ob[4] = lista.get(i).getEstado();
+            modelo.addRow(ob);
+        }
+    }
+    
+    void agregar(){
+        
+    }
+    
+    void actualizar(){
+        
+    }
+    
+    void eliminar(){
+        
+    }
+    
+    void nuevo(){
+        
+    }
+    
+    void limpiarTabla(){
+        
     }
 
     @SuppressWarnings("unchecked")

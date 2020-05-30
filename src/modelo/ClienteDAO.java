@@ -17,7 +17,7 @@ public class ClienteDAO implements Crud {
     
     @Override
     public List listar() {
-        List <Cliente> lista = new ArrayList<>();
+        List <Cliente> datos = new ArrayList<>();
         String sql = "SELECT * FROM Cliente";
         try {
             conn = con.conectar();
@@ -32,14 +32,14 @@ public class ClienteDAO implements Crud {
                 c.setApellidoM(rs.getString(5));
                 c.setDireccion(rs.getString(6));
                 c.setEstado(rs.getString(7));
-                lista.add(c);              
+                datos.add(c);              
             }
         } catch(Exception e) { 
             System.out.println(e.getMessage());
         }finally{
             con.cerrarConexion();
         }
-        return lista;
+        return datos;
     }
 
     @Override

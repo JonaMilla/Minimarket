@@ -31,17 +31,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        btnSalir = new javax.swing.JButton();
         lblFondo = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
-        jMenu4 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(685, 565));
+        setMinimumSize(new java.awt.Dimension(685, 612));
         getContentPane().setLayout(null);
 
         jButton1.setBackground(new java.awt.Color(102, 51, 255));
@@ -94,27 +92,22 @@ public class MenuPrincipal extends javax.swing.JFrame {
         getContentPane().add(jLabel1);
         jLabel1.setBounds(180, 20, 320, 50);
 
+        btnSalir.setBackground(new java.awt.Color(102, 51, 255));
+        btnSalir.setText("Salir");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnSalir);
+        btnSalir.setBounds(80, 490, 520, 32);
+
         lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondo.png"))); // NOI18N
         lblFondo.setText("jLabel1");
         getContentPane().add(lblFondo);
-        lblFondo.setBounds(0, 0, 690, 540);
+        lblFondo.setBounds(0, 0, 680, 590);
 
-        jMenu1.setText("Opciones");
-
-        jMenu3.setText("Ayuda");
-        jMenu1.add(jMenu3);
-
-        jMenu4.setText("Salir");
-        jMenu4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu4ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenu4);
-
-        jMenuBar1.add(jMenu1);
-
-        jMenu2.setText("Mantenimiento");
+        jMenu2.setText("Administración");
 
         jMenuItem1.setText("Cliente");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -144,26 +137,24 @@ public class MenuPrincipal extends javax.swing.JFrame {
         cli.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-    private void jMenu4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu4ActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_jMenu4ActionPerformed
-
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         ProductoP ven = new ProductoP();
         ven.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_btnSalirActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnSalir;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
