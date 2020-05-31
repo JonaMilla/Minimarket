@@ -69,7 +69,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jButton3.setFont(new java.awt.Font("Microsoft YaHei UI Light", 1, 14)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/menu_admin.png"))); // NOI18N
-        jButton3.setText("Ingresar Producto");
+        jButton3.setText("?");
         jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton3.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jButton3.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
