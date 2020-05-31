@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductoDAO implements Crud{
+public class ProductoDAO implements Crud <Producto>{
     Connection conn;
     ConexionSql con;
     PreparedStatement ps;
@@ -16,7 +16,7 @@ public class ProductoDAO implements Crud{
     @Override
     public List listar() {
         List<Producto> lista = new ArrayList<>();
-        String sql = "SELECT * FROM Producto";
+        String sql = "SELECT * FROM producto";
         try{
             conn = con.conectar();
             ps = conn.prepareStatement(sql);
@@ -39,17 +39,17 @@ public class ProductoDAO implements Crud{
     }
 
     @Override
-    public int add(Object[] o) {
+    public int add(Producto pro) {
         int p = 0;
-        String sql = "INSERT INTO Producto (Nombre, Precio, Stock, Estado)"
+        String sql = "INSERT INTO producto (Nombre, Precio, Stock, Estado)"
                   + "VALUES (?,?,?,?) ";
         try{
             conn = con.conectar();
             ps = conn.prepareStatement(sql);
-            ps.setObject(1, o[0]);
-            ps.setObject(2, o[1]);
-            ps.setObject(3, o[2]);
-            ps.setObject(4, o[3]);
+            ps.setString(1, pro.getNombre());
+            ps.setInt(2, pro.getPrecio());
+            ps.setInt(3, pro.getStock());
+            ps.setString(4, pro.getEstado());
             p = ps.executeUpdate();
         }
         catch(Exception e){           
@@ -60,17 +60,18 @@ public class ProductoDAO implements Crud{
     }
 
     @Override
-    public int actualizar(Object[] o) {
+    public int actualizar(Producto pro) {
         int p = 0;
-        String sql = "UPDATE Producto SET Nombre=?, Precio=?, Stock=?, Estado=?"
+        String sql = "UPDATE producto SET Nombre=?, Precio=?, Stock=?, Estado=?"
                   + "WHERE IdProducto=?";
         try{
             conn = con.conectar();
             ps = conn.prepareStatement(sql);
-            ps.setObject(1, o[0]);
-            ps.setObject(2, o[1]);
-            ps.setObject(3, o[2]);
-            ps.setObject(4, o[3]);
+            ps.setString(1, pro.getNombre());
+            ps.setInt(2, pro.getPrecio());
+            ps.setInt(3, pro.getStock());
+            ps.setString(4, pro.getEstado());
+            ps.setInt(5, pro.getId());
             p = ps.executeUpdate();
         }
         catch(Exception e){
@@ -83,7 +84,7 @@ public class ProductoDAO implements Crud{
 
     @Override
     public void eliminar(int id) {
-        String sql = "DELETE FROM Producto WHERE IdProducto";
+        String sql = "DELETE FROM producto WHERE IdProducto";
         try {
             conn = con.conectar();
             ps = conn.prepareStatement(sql);

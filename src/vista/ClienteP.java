@@ -1,6 +1,5 @@
 package vista;
 
-import controlador.Controlador;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -11,24 +10,25 @@ public class ClienteP extends javax.swing.JFrame {
 
     ClienteDAO dao = new ClienteDAO();
     Cliente cl = new Cliente();
-    
+
     DefaultTableModel modelo = new DefaultTableModel();
     int id;
+
     public ClienteP() {
         initComponents();
         this.setLocationRelativeTo(null);
         listar();
     }
-    
-    public void volver(){
+
+    public void volver() {
         MenuPrincipal mPrincipal = new MenuPrincipal();
         mPrincipal.setVisible(true);
         this.setVisible(false);
     }
-    
+
     void listar() {
         List<Cliente> lista = dao.listar();
-        modelo = (DefaultTableModel) jtablaCliente.getModel();        
+        modelo = (DefaultTableModel) jtablaCliente.getModel();
         Object[] ob = new Object[7];
         for (int i = 0; i < lista.size(); i++) {
             ob[0] = lista.get(i).getId();
@@ -42,21 +42,9 @@ public class ClienteP extends javax.swing.JFrame {
         }
         jtablaCliente.setModel(modelo);
     }
-    
+
     void agregar() {
-        String nom = txtNombre.getText();
-        String rut = txtRut.getText();
-        String apeP = txtApellidoP.getText();
-        String apeM = txtApellidoM.getText();
-        String dir = txtDireccion.getText();
-        String est = cbxEstado.getSelectedItem().toString();
-        Object[] ob = new Object[6];
-        ob[0] = nom;
-        ob[1] = rut;
-        ob[2] = apeP;
-        ob[3] = apeM;
-        ob[4] = dir;
-        ob[5] = est;
+        //modificado por yo :C
         Cliente cli = new Cliente();
         try {
             cli.setNombre(txtNombre.getText());
@@ -67,43 +55,49 @@ public class ClienteP extends javax.swing.JFrame {
             cli.setEstado(cbxEstado.getSelectedItem().toString());
         } catch (Exception e) {
             //System.out.println(e.getMessage());
-            JOptionPane.showMessageDialog(this, "Error al agregar Cliente" +e.getMessage());
+            JOptionPane.showMessageDialog(this, "Error al agregar Cliente" + e.getMessage());
         }
-        
-        dao.add(ob);
+
+        dao.add(cli);
     }
-    
+
     void actualizar() {
         int fila = jtablaCliente.getSelectedRow();
-        if (fila == -1) {
-            JOptionPane.showMessageDialog(this, "Debe seleccionar una fila");
-        }else{
-            String nom = txtNombre.getText();
-            String rut = txtRut.getText();
-            String apeP = txtApellidoP.getText();
-            String apeM = txtApellidoM.getText();
-            String dir = txtDireccion.getText();
-            String est = cbxEstado.getSelectedItem().toString();      
-            Object[] obj = new Object[7];
-            obj[0] = nom;
-            obj[1] = rut;
-            obj[2] = apeP;
-            obj[3] = apeM;
-            obj[4] = dir;
-            obj[5] = est;
-            dao.actualizar(obj);
-        }       
+        Cliente cli = new Cliente();
+        try {
+            if (fila == -1) {
+                JOptionPane.showMessageDialog(this, "Debe seleccionar una fila");
+            } else {
+                String nom = txtNombre.getText();
+                String rut = txtRut.getText();
+                String apeP = txtApellidoP.getText();
+                String apeM = txtApellidoM.getText();
+                String dir = txtDireccion.getText();
+                String est = cbxEstado.getSelectedItem().toString();
+                Object[] obj = new Object[7];
+                obj[0] = nom;
+                obj[1] = rut;
+                obj[2] = apeP;
+                obj[3] = apeM;
+                obj[4] = dir;
+                obj[5] = est;
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al actualizar cliente");
+        }
+        dao.actualizar(cli);
+
     }
-    
+
     void eliminar() {
         int fila = jtablaCliente.getSelectedRow();
         if (fila == -1) {
             JOptionPane.showMessageDialog(this, "Debe seleccionar una fila");
-        }else{
+        } else {
             dao.eliminar(id);
         }
     }
-    
+
     void nuevo() {
         txtNombre.setText("");
         txtApellidoP.setText("");
@@ -112,14 +106,14 @@ public class ClienteP extends javax.swing.JFrame {
         cbxEstado.setSelectedItem("");
         txtRut.requestFocus();
     }
-    
+
     void limpiarTabla() {
         for (int i = 0; i < modelo.getRowCount(); i++) {
             modelo.removeRow(i);
             i = i - 1;
         }
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -430,7 +424,7 @@ public class ClienteP extends javax.swing.JFrame {
     }//GEN-LAST:event_jtablaClienteMouseClicked
 
     private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
-      
+        this.listar();
     }//GEN-LAST:event_btnListarActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed

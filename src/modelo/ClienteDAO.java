@@ -7,7 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-public class ClienteDAO implements Crud {
+public class ClienteDAO implements Crud <Cliente> {
 
     Connection conn;
     ConexionSql con = new ConexionSql();
@@ -18,7 +18,7 @@ public class ClienteDAO implements Crud {
     @Override
     public List listar() {
         List <Cliente> datos = new ArrayList<>();
-        String sql = "SELECT * FROM Cliente";
+        String sql = "SELECT * FROM cliente";
         try {
             conn = con.conectar();
             ps = conn.prepareStatement(sql);
@@ -43,20 +43,20 @@ public class ClienteDAO implements Crud {
     }
 
     @Override
-    public int add(Object [] o) {
+    public int add(Cliente cli) {
         int r = 0;
-        String sql = "INSERT INTO Cliente (NombreCliente,Rut,ApellidoPaterno"
+        String sql = "INSERT INTO cliente (NombreCliente,Rut,ApellidoPaterno"
                             + ",ApellidoMaterno,Direccion,Estado)  "
                             + "VALUES (?,?,?,?,?,?)";
         try {
             conn = con.conectar();
             ps = conn.prepareStatement(sql);
-            ps.setObject(1, o[0]);
-            ps.setObject(2, o[1]);
-            ps.setObject(3, o[2]);
-            ps.setObject(4, o[3]);
-            ps.setObject(5, o[4]);
-            ps.setObject(6, o[5]);
+            ps.setString(1, cli.getNombre());
+            ps.setString(2, cli.getRut() );
+            ps.setString(3, cli.getApellidoP());
+            ps.setString(4, cli.getApellidoM());
+            ps.setString(5, cli.getDireccion());
+            ps.setString(6, cli.getEstado());
             r = ps.executeUpdate();
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -67,20 +67,21 @@ public class ClienteDAO implements Crud {
     }
 
     @Override
-    public int actualizar(Object [] o) {
+    public int actualizar(Cliente cli) {
         int r = 0;
-        String sql = "UPDATE Cliente SET NombreCliente=?, Rut=?, "
+        String sql = "UPDATE cliente SET NombreCliente=?, Rut=?, "
                   + "ApellidoPaterno=?, ApellidoMaterno=?, Direccion=?, Estado=? "
                   + "WHERE IdCliente =?";
         try {
             conn = con.conectar();
             ps = conn.prepareStatement(sql);
-            ps.setObject(1, o[0]);
-            ps.setObject(2, o[1]);
-            ps.setObject(3, o[2]);
-            ps.setObject(4, o[3]);
-            ps.setObject(5, o[4]);
-            ps.setObject(6, o[5]);
+            ps.setString(1, cli.getNombre());
+            ps.setString(2, cli.getRut());
+            ps.setString(3, cli.getApellidoP());
+            ps.setString(4, cli.getApellidoM());
+            ps.setString(5, cli.getDireccion());
+            ps.setString(6, cli.getEstado());
+            ps.setInt(7, cli.getId());
             r = ps.executeUpdate();
         } catch (Exception e) {
         }finally{
@@ -92,7 +93,7 @@ public class ClienteDAO implements Crud {
 
     @Override
     public void eliminar(int id) {
-        String sql = "DELETE FROM Cliente WHERE IdCliente = ?";
+        String sql = "DELETE FROM cliente WHERE IdCliente = ?";
         try {
             conn = con.conectar();
             ps = conn.prepareStatement(sql);

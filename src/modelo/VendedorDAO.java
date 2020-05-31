@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-public class VendedorDAO implements Crud{
+public class VendedorDAO implements Crud <Vendedor>{
     PreparedStatement ps;
     ResultSet rs;
     
@@ -43,7 +43,7 @@ public class VendedorDAO implements Crud{
     @Override
     public List listar() {
         List<Vendedor> lista = new ArrayList<>();
-        String sql = "SELECT * FROM Vendedor";
+        String sql = "SELECT * FROM vendedor";
         try{
         conn = con.conectar();
         ps = conn.prepareStatement(sql);
@@ -70,21 +70,21 @@ public class VendedorDAO implements Crud{
     }
 
     @Override
-    public int add(Object[] o) {
+    public int add(Vendedor ven) {
         int c = 0;
-        String sql = "INSERT INTO Vendedor (Rut, Nombre, ApellidoPaterno, ApellidoMaterno"
+        String sql = "INSERT INTO vendedor (Rut, Nombre, ApellidoPaterno, ApellidoMaterno"
                   + ",Telefono, Estado, User_2)"
                   + "VALUES (?,?,?,?,?,?,?)";
         try{
             conn = con.conectar();
             ps = conn.prepareStatement(sql);
-            ps.setObject(1, o[0]);
-            ps.setObject(2, o[1]);
-            ps.setObject(3, o[2]);
-            ps.setObject(4, o[3]);
-            ps.setObject(5, o[4]);
-            ps.setObject(6, o[5]);
-            ps.setObject(7, o[6]);
+            ps.setString(1, ven.getRut());
+            ps.setString(2, ven.getNombre());
+            ps.setString(3, ven.getApellidoP());
+            ps.setString(4, ven.getApellidoM());
+            ps.setString(5, ven.getTelefono());
+            ps.setString(6, ven.getEstado());
+            ps.setString(7, ven.getUser());
             c = ps.executeUpdate();
         }
         catch(Exception e){
@@ -96,21 +96,21 @@ public class VendedorDAO implements Crud{
     }
 
     @Override
-    public int actualizar(Object[] o) {
+    public int actualizar(Vendedor ven) {
         int p = 0;
-        String sql = "UPDATE Vendedor SET Rut=?, Nombre=?,  "
+        String sql = "UPDATE vendedor SET Rut=?, Nombre=?,  "
                   + "ApellidoPaterno=?, ApellidoMaterno=?, Telefono=?, Estado=?, User_2=? "
                   + "WHERE IdVendedor =?";
         try {
             conn = con.conectar();
             ps = conn.prepareStatement(sql);
-            ps.setObject(1, o[0]);
-            ps.setObject(2, o[1]);
-            ps.setObject(3, o[2]);
-            ps.setObject(4, o[3]);
-            ps.setObject(5, o[4]);
-            ps.setObject(6, o[5]);
-            ps.setObject(7, o[6]);
+            ps.setString(1, ven.getRut());
+            ps.setString(2, ven.getNombre());
+            ps.setString(3, ven.getApellidoP());
+            ps.setString(4, ven.getApellidoM());
+            ps.setString(5, ven.getTelefono());
+            ps.setString(6, ven.getEstado());
+            ps.setString(7, ven.getUser());
             p = ps.executeUpdate();
         }
         catch(Exception e){
